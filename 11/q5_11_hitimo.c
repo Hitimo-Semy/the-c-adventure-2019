@@ -10,32 +10,47 @@ No division should be given if fail in 1 or more subjects.
 
 int main()
 {
-    int n, a[10][5],mark=0;
+    int n, r[90], a[90][4],mark=0;
+    float avg;
     printf("Enter the number of students:\n");
     scanf("%d",&n);
     printf("Enter the data:\n");
     for(int i=0;i<n;i++)
     {
         printf("Roll No:");
-        scanf("%d",&a[i][1]);
+        scanf("%d",&r[i]);
         printf("Enter marks for 3 subjects and additonal subject:\n");
-        for(int j=1;j<5;j++)
+        for(int j=0;j<4;j++)
         {
+            printf("Subject %d:",j+1);
             scanf("%d",&a[i][j]);
         }
     }
     for(int k=0;k<n;k++)
     {
-        printf("Roll no:",a[k][1]);
+        printf("\nRoll no: %d",r[k]);
         for(int l=0;l<5;l++)
         {
-            if(a[k][l]<33)
-            {
-                 printf("Fail");
-                 break;
-            }   
-            mark=mark+a[k][l];
+            mark=mark+a[k][l];  
         }
+        avg=(float)mark/4;
+        mark=0;
+        if(a[k][0]<40.0 || a[k][1]<40.0 || a[k][2]<40.0 || a[k][3]<40.0)
+        {
+            printf("\nfail\n");
+        }
+        else if(avg>=60.0)
+        {
+            printf("\n1st division\n");
+        }
+        else if(avg>=50.0 && avg<=59.0)
+        {
+            printf("\n2nd division\n");
+        }
+        else if(avg>=40.0 && avg<=49.0)
+        {
+            printf("\n3rd division\n");
+        }   
     }
     getch();
     return 0;
